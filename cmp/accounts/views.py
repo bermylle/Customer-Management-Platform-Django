@@ -2,8 +2,32 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import inlineformset_factory #multiple form
 from .models import *
-from .forms import OrderForm
+from .forms import OrderForm, CreateUserForm
+from .filters import OrderFilter
+
+from django.contrib import messages
+
+from django.contrib.auth.forms import UserCreationForm
+
 #Create your views here
+def loginPage(request):
+	context = {}
+
+	return render(request, 'accounts/login.html',context)
+
+def registerPage(request):
+	form = CreateUserForm()
+
+	if request.method == 'POST':
+		form = CreateUserForm(request.POST)
+		if form.is_valid():
+			form.save()
+			
+			
+			return redirect('login')
+	context = {'form' : form}
+
+	return render(request, 'accounts/register.html',context)
 
 def home(request):
 	orders = Order.objects.all()
@@ -33,7 +57,12 @@ def customer(request, pk_test):
 
 	orders = customer.order_set.all()
 	order_count = orders.count()
-	context = {'customer' : customer, 'orders' : orders, 'order_count' : order_count}
+
+
+	myFilter = OrderFilter(request.GET, queryset = orders)
+	orders = myFilter.qs
+
+	context = {'customer' : customer, 'orders' : orders, 'order_count' : order_count, 'myFilter' : myFilter}
 	return render(request, 'accounts/customer.html', context)
 
 def createOrder(request,pk):
@@ -51,7 +80,7 @@ def createOrder(request,pk):
 			formset.save()
 			return redirect('/')
 
-	context = {'formset' : formset}
+	context = {'form' : formset}
 	return render(request, 'accounts/order_form.html', context)
 
 def updateOrder(request,pk):
@@ -76,3 +105,4 @@ def deleteOrder(request,pk):
 		return redirect('/')
 	context = {'item' : order}
 	return render(request, 'accounts/delete.html', context)
+
