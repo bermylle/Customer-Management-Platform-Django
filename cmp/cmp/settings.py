@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER' : 'bermyllerazon',
-        'PASSWORD' : 'L14brmk993014',
+        'PASSWORD' : '***********',
         'HOST' : 'database-2.czwsk5gretww.us-east-2.rds.amazonaws.com',
         'PORT' : '5432'
     }
@@ -137,7 +137,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'devbermylle@gmail.com'
-EMAIL_HOST_PASSWORD = 'L14brmk993014'
+EMAIL_HOST_PASSWORD = '*************'
 
 AWS_LOCATION = 'static'
 
