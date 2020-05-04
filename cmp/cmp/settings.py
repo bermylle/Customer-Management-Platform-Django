@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'django_filters',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -136,6 +137,31 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'devbermylle@gmail.com'
 EMAIL_HOST_PASSWORD = 'L14brmk993014'
 
-AWS_LOCATION = 'static'
+
 
 ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+#S3 BUCKETS CONFIG
+
+AWS_ACCESS_KEY_ID = 'AKIAWLKE4VAISUVMKGXJ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'bermyllerazon-cmp-bucket'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_HOST = "s3.ap-southeast-1.amazonaws.com"
+AWS_S3_REGION_NAME = "ap-southeast-1"
+
+'''
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+<CORSRule>
+    <AllowedOrigin>*</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
+    <AllowedMethod>PUT</AllowedMethod>
+    <AllowedHeader>*</AllowedHeader>
+</CORSRule>
+</CORSConfiguration>
+'''
