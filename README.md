@@ -1,2 +1,4 @@
 # Customer Management Platform
-### made with Django
+- Django
+- used AWS S3 Buckets for static files
+- POSTGRESQL
