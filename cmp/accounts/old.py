@@ -74,12 +74,8 @@ WSGI_APPLICATION = 'cmp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER' : 'bermyllerazon',
-        'PASSWORD' : 'L14brmk993014',
-        'HOST' : 'database-2.czwsk5gretww.us-east-2.rds.amazonaws.com',
-        'PORT' : '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -135,7 +131,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'devbermylle@gmail.com'
 EMAIL_HOST_PASSWORD = 'L14brmk993014'
-
-AWS_LOCATION = 'static'
-
-ADMIN_MEDIA_PREFIX = '/static/admin/'
